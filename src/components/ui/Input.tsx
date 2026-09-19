@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Eye, EyeOff } from "lucide-react";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -9,8 +10,12 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
 }
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, label, error, helper, icon, id, ...props }, ref) => {
+  ({ className, label, error, helper, icon, id, type, ...props }, ref) => {
     const inputId = id || (label ? label.toLowerCase().replace(/\s+/g, "-") : undefined);
+    const isPasswordType = type === "password";
+    const [showPassword, setShowPassword] = useState(false);
+
+    const resolvedType = isPasswordType && showPassword ? "text" : type;
 
     return (
       <div className="w-full flex flex-col gap-1.5">
@@ -28,14 +33,31 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             id={inputId}
             ref={ref}
+            type={resolvedType}
             className={cn(
               "w-full rounded-xl border border-[#EADBCE] bg-white px-3.5 py-2.5 text-sm text-[#2F2924] placeholder-[#A89C92] transition-colors focus:border-[#D97745] focus:outline-none focus:ring-2 focus:ring-[#D97745]/20 disabled:bg-[#F7F2EB] disabled:cursor-not-allowed",
               icon ? "pl-10" : "",
+              isPasswordType ? "pr-11" : "",
               error ? "border-[#C04838] focus:border-[#C04838] focus:ring-[#C04838]/20" : "",
               className
             )}
             {...props}
           />
+          {isPasswordType && (
+            <button
+              type="button"
+              tabIndex={-1}
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 flex items-center justify-center w-6 h-6 rounded-md text-[#9C8F84] hover:text-[#594E46] hover:bg-[#F3ECE2] transition-colors focus:outline-none"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? (
+                <EyeOff className="w-4 h-4" />
+              ) : (
+                <Eye className="w-4 h-4" />
+              )}
+            </button>
+          )}
         </div>
         {error && <p className="text-xs text-[#C04838] mt-0.5">{error}</p>}
         {helper && !error && <p className="text-xs text-[#8C8075] mt-0.5">{helper}</p>}

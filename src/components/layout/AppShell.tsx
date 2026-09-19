@@ -17,6 +17,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const { isAuthenticated, isLoading, token } = useAppSelector((state) => state.auth);
+  const { isSidebarOpen } = useAppSelector((state) => state.ui);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   const isAuthPage =
@@ -61,10 +62,12 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF6F0]">
       <Navbar />
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden relative">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
-          {children}
+        <main className="flex-1 overflow-y-auto p-3 sm:p-5 lg:p-8 w-full">
+          <div className="max-w-7xl mx-auto w-full">
+            {children}
+          </div>
         </main>
       </div>
       <QuickBatchModal />
