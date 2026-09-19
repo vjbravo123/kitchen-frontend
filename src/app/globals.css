@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --color-earth-primary: #8B5E3C;
+  --color-earth-primary-dark: #6E492E;
+  --color-earth-primary-light: #A97652;
+  --color-earth-accent: #D97745;
+  --color-earth-accent-hover: #C56434;
+  --color-earth-accent-light: #FDF1EA;
+  --color-earth-highlight: #E7B86A;
+  --color-earth-highlight-dark: #C69542;
+  --color-earth-highlight-light: #FEF9F0;
+  --color-earth-success: #6F8F5F;
+  --color-earth-success-dark: #58744B;
+  --color-earth-success-light: #F0F6EE;
+  --color-earth-cream: #FAF6F0;
+  --color-earth-card: #FFFFFF;
+  --color-earth-card-warm: #FDFBF7;
+  --color-earth-espresso: #2F2924;
+  --color-earth-muted: #766B62;
+  --color-earth-border: #EADBCE;
+  --color-earth-border-light: #F3ECE2;
+}
+
+:root {
+  --background: #FAF6F0;
+  --foreground: #2F2924;
+}
+
+body {
+  background-color: #FAF6F0;
+  color: #2F2924;
+  min-height: 100vh;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF6F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9C8B5;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8B5E3C;
+}
+
+/* Glassmorphic warm container */
+.warm-glass {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(234, 219, 206, 0.7);
+}
+
+.earth-card {
+  background: #FFFFFF;
+  border: 1px solid #EADBCE;
+  border-radius: 1rem;
+  box-shadow: 0 2px 10px rgba(47, 41, 36, 0.04), 0 1px 3px rgba(47, 41, 36, 0.02);
+  transition: all 0.2s ease-in-out;
+}
+
+.earth-card:hover {
+  box-shadow: 0 8px 24px rgba(139, 94, 60, 0.08), 0 2px 6px rgba(47, 41, 36, 0.04);
+  border-color: #D9C4B0;
+}
+
+.warm-shadow {
+  box-shadow: 0 4px 20px -2px rgba(139, 94, 60, 0.12), 0 2px 6px -1px rgba(47, 41, 36, 0.06);
+}
+
+.terracotta-btn {
+  background-color: #D97745;
+  color: #FFFFFF;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.terracotta-btn:hover {
+  background-color: #C56434;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(217, 119, 69, 0.3);
+}
+
+.terracotta-btn:active {
+  transform: translateY(0);
+}
